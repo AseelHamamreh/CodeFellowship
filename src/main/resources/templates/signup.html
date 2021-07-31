@@ -3,30 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 </head>
+
 <body>
-<a href="http://localhost:3030/" >home Page</a>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="http://localhost:3030/">codeFellowship </a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="http://localhost:3030/">Home</a></li>
+      <li><a href="http://localhost:3030/login">Log in</a></li>
+      <li><a href="http://localhost:3030/signup">Sign Up</a></li>
+      <li><a href="http://localhost:3030/profile" >Profile</a></li>
+    </ul>
+  </div>
+</nav>
+
+
 
   <form th:action="@{/signup}" method="post">
 
+    <h2>Create New Profile</h2>
     <label> first name: </label>
     <input type="text" name="firstName" required />
-
+<br>
     <label> last name: </label>
     <input type="text" name="lastName" required />
-
+<br>
     <label> account user name: </label>
     <input type="text" name="username" required />
-
+<br>
     <label> password: </label>
     <input type="password" name="password" required/>
-
+<br>
     <label> date Of Birth: </label>
     <input type="text" name="dateOfBirth" required/>
-
+<br>
     <label> your bio: </label>
     <input type="text" name="bio" required/>
-
+<br>
     <input type="submit" value="create" />
 
   </form>
