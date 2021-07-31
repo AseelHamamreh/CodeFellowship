@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" >
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+</head>
+<body>
+<a href="http://localhost:3030/" >home Page</a>
+
+  <form th:action="@{/signup}" method="post">
+
+    <label> first name: </label>
+    <input type="text" name="firstName" required />
+
+    <label> last name: </label>
+    <input type="text" name="lastName" required />
+
+    <label> account user name: </label>
+    <input type="text" name="username" required />
+
+    <label> password: </label>
+    <input type="password" name="password" required/>
+
+    <label> date Of Birth: </label>
+    <input type="text" name="dateOfBirth" required/>
+
+    <label> your bio: </label>
+    <input type="text" name="bio" required/>
+
+    <input type="submit" value="create" />
+
+  </form>
+</body>
+</html>
