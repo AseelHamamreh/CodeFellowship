@@ -35,11 +35,12 @@ public class RegisterationController {
     }
 
     @PostMapping("/signup")
-    public RedirectView createAppUser(@RequestParam String username , @RequestParam String password
+    public RedirectView createAppUser(@RequestParam String profilePic, @RequestParam String username , @RequestParam String password
             , @RequestParam String firstName , @RequestParam String lastName
             , @RequestParam String bio , @RequestParam String dateOfBirth){
 
         AppUser applicationUser = new AppUser(username , encoder.encode(password));
+        applicationUser.setProfilePic(profilePic);
         applicationUser.setFirstName(firstName);
         applicationUser.setLastName(lastName);
         applicationUser.setDateOfBirth(dateOfBirth);

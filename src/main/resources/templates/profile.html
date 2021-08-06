@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
@@ -17,10 +17,13 @@
             <li class="active"><a href="http://localhost:3030/">Home</a></li>
             <li><a href="http://localhost:3030/login">Log in</a></li>
             <li><a href="http://localhost:3030/signup">Sign Up</a></li>
-            <li><a href="http://localhost:3030/profile" >Profile</a></li>
+            <li><a href="http://localhost:3030/profile" sec:authorize="isAuthenticated()">Profile</a></li>
+            <li><a href="http://localhost:3030/profile" sec:authorize="isAuthenticated()" sec:authentication="name"></a></li>
+
         </ul>
     </div>
 </nav>
+<img th:src="${appUser.getProfilePic()}" alt="">
 
 <h1 th:text="${appUser.getFirstName()} + ' ' + ${appUser.getLastName()}"></h1>
 <h2 th:text="'date of birth ' + ${appUser.getDateOfBirth()}" ></h2>

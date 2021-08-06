@@ -15,6 +15,7 @@ public class AppUser implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
 
+    private String profilePic;
     private String username ;
     private String password ;
     private String firstName ;
@@ -33,20 +34,13 @@ public class AppUser implements UserDetails {
         this.password = password ;
     }
 
-    public AppUser(String username , String password, String firstName , String lastName , String dateOfBirth ){
+    public AppUser(String profilePic, String username , String password, String firstName , String lastName , String dateOfBirth ){
+        this.profilePic = profilePic;
         this.firstName = firstName ;
         this.lastName = lastName ;
         this.dateOfBirth = dateOfBirth ;
         this.username = username ;
         this.password = password ;
-    }
-    public AppUser(String username , String password, String firstName , String lastName , String dateOfBirth , String bio ){
-        this.username = username ;
-        this.password = password ;
-        this.firstName = firstName ;
-        this.lastName = lastName ;
-        this.dateOfBirth = dateOfBirth ;
-        this.bio = bio ;
     }
 
     public Long getId() {
@@ -99,6 +93,14 @@ public class AppUser implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
+    }
+
+    public String getProfilePic() {
+        return profilePic;
     }
 
     @Override

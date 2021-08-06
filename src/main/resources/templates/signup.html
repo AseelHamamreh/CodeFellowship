@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" >
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
@@ -17,7 +17,9 @@
       <li class="active"><a href="http://localhost:3030/">Home</a></li>
       <li><a href="http://localhost:3030/login">Log in</a></li>
       <li><a href="http://localhost:3030/signup">Sign Up</a></li>
-      <li><a href="http://localhost:3030/profile" >Profile</a></li>
+      <li><a href="http://localhost:3030/profile" sec:authorize="isAuthenticated()" >Profile</a></li>
+        <li><a href="http://localhost:3030/profile" sec:authorize="isAuthenticated()" sec:authentication="name"></a></li>
+
     </ul>
   </div>
 </nav>
@@ -45,6 +47,9 @@
     <label> your bio: </label>
     <input type="text" name="bio" required/>
 <br>
+      <label> profile picture URL: </label>
+      <input type="text" name="profilePic" required/>
+      <br>
     <input type="submit" value="create" />
 
   </form>
