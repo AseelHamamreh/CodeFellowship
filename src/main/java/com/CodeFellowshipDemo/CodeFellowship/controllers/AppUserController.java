@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
 @Controller
 public class AppUserController {
 
@@ -21,6 +23,8 @@ public class AppUserController {
         AppUser appUser = appUserRepo.findApplicationUserByUsername(userDetails.getUsername());
         model.addAttribute("appUser" , appUser);
         model.addAttribute("posts" , appUser.getPosts());
+        List<AppUser> myList = appUserRepo.findAll();
+        model.addAttribute("myList", myList);
         return "profile" ;
     }
 }
