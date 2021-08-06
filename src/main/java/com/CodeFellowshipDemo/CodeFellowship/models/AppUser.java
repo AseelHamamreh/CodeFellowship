@@ -5,8 +5,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class AppUser implements UserDetails {
@@ -21,6 +22,13 @@ public class AppUser implements UserDetails {
     private String firstName ;
     private String lastName ;
     private String dateOfBirth ;
+
+    @ElementCollection
+    private List<String> followes;
+
+
+
+
     @Column(columnDefinition = "text")
     private String bio ;
 
@@ -101,6 +109,14 @@ public class AppUser implements UserDetails {
 
     public String getProfilePic() {
         return profilePic;
+    }
+
+    public void setFollowes(List<String> followes) {
+        this.followes = followes;
+    }
+
+    public List<String> getFollowes() {
+        return followes;
     }
 
     @Override

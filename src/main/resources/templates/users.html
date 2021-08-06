@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>CodeFellows</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
 </head>
 <body>
 
@@ -20,14 +21,17 @@
             <li><a href="http://localhost:3030/users" sec:authorize="isAuthenticated()">Users</a></li>
             <li><a href="http://localhost:3030/following" sec:authorize="isAuthenticated()">Following</a></li>
             <li><a href="http://localhost:3030/profile" sec:authorize="isAuthenticated()" sec:authentication="name"></a></li>
+
         </ul>
     </div>
 </nav>
 
-    <h1>Welcome to codeFellowship web app, create your profile NOW and post what whatever you want!</h1>
-
+<h3>All Users: </h3>
 <div th:each="user:${myList}" >
-    <p  th:text="${user.username}" ></p>
+<form th:action="@{/users}"  method="post">
+        <input th:value="${user.username}" name="newUser">
+        <input value="Follow" type="submit">
+</form>
 </div>
 
 </body>

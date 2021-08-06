@@ -2,11 +2,11 @@
 <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>CodeFellows</title>
+    <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
 </head>
 <body>
-
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -15,20 +15,22 @@
         <ul class="nav navbar-nav">
             <li class="active"><a href="http://localhost:3030/">Home</a></li>
             <li><a href="http://localhost:3030/login">Log in</a></li>
-            <li><a href="http://localhost:3030/signup">Sign Up</a></li>
+            <li><a href="http://localhost:3030/signup" >Sign Up</a></li>
             <li><a href="http://localhost:3030/profile" sec:authorize="isAuthenticated()">Profile</a></li>
             <li><a href="http://localhost:3030/users" sec:authorize="isAuthenticated()">Users</a></li>
             <li><a href="http://localhost:3030/following" sec:authorize="isAuthenticated()">Following</a></li>
             <li><a href="http://localhost:3030/profile" sec:authorize="isAuthenticated()" sec:authentication="name"></a></li>
+            <li><a href="http://localhost:3030/logout" sec:authorize="isAuthenticated()" >Logout</a></li>
+
         </ul>
     </div>
 </nav>
 
-    <h1>Welcome to codeFellowship web app, create your profile NOW and post what whatever you want!</h1>
+<h3>Your Following: </h3>
+<th:block th:each="user : ${users}">
+    <li th:utext="${user}">..</li>
+</th:block>
 
-<div th:each="user:${myList}" >
-    <p  th:text="${user.username}" ></p>
-</div>
 
 </body>
 </html>
