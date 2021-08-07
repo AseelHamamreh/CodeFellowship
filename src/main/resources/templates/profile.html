@@ -5,49 +5,65 @@
     <title>Profile</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
 </head>
 <body>
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="http://localhost:3030/">codeFellowship </a>
+            <a class="navbar-brand" href="/">codeFellowship </a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="http://localhost:3030/">Home</a></li>
-            <li><a href="http://localhost:3030/login">Log in</a></li>
-            <li><a href="http://localhost:3030/signup">Sign Up</a></li>
-            <li><a href="http://localhost:3030/profile" sec:authorize="isAuthenticated()">Profile</a></li>
-            <li><a href="http://localhost:3030/users" sec:authorize="isAuthenticated()">Users</a></li>
-            <li><a href="http://localhost:3030/following" sec:authorize="isAuthenticated()">Following</a></li>
-            <li><a href="http://localhost:3030/profile" sec:authorize="isAuthenticated()" sec:authentication="name"></a></li>
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/login">Log in</a></li>
+            <li><a href="/signup" >Sign Up</a></li>
+            <li><a href="/profile" sec:authorize="isAuthenticated()">Profile</a></li>
+            <li><a href="/profile" sec:authorize="isAuthenticated()" sec:authentication="name"></a></li>
+            <li><a href="/logout" sec:authorize="isAuthenticated()" >Logout</a></li>
 
         </ul>
     </div>
 </nav>
-<img th:src="${appUser.getProfilePic()}" alt="">
 
-<h1 th:text="${appUser.getFirstName()} + ' ' + ${appUser.getLastName()}"></h1>
-<h2 th:text="'date of birth ' + ${appUser.getDateOfBirth()}" ></h2>
 
-<h2>Bio : </h2>
-<p th:text="${appUser.getBio()}" ></p>
-
-<form th:action="@{/newPost}" method="post" >
-    <h1>Add new Post: </h1>
-    <input type="text" name="body"  />
-    <input type="submit" value="Add" />
-</form>
-
-<div th:each="post : ${posts}" >
-    <h2>your post : </h2>
-    <p th:text="${post.getBody()}"></p>
+<div class="card">
+    <div class="column_one">
+        <div class="text">
+            <h3> <span th:text="${appUser.getFirstName()} + ' ' + ${appUser.getLastName()}"></span></h3>
+            <div class="line"></div>
+            <h6 th:text="'date of birth: ' + ${appUser.getDateOfBirth()}" ></h6>
+            <a href="/following">Following</a>
+            <i class="fas fa-home fa-lg"></i>
+            <i class="fas fa-envelope fa-lg"></i>
+            <i class="fas fa-phone fa-lg"></i>
+        </div>
+        <div class="title" th:text="${appUser.getBio()}"></div>
+    </div>
+    <div class="column_two">
+        <img th:src="${appUser.getProfilePic()}" />
+    </div>
 </div>
 
+<div class="postForm">
+<form th:action="@{/newPost}" method="post" >
+    <h1>Add a New Post: </h1>
 
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Log Out" />
+    <div class="form-outline mb-4">
+        <textarea name="body" class="form-control" id="form6Example7" rows="4"></textarea>
+    </div>
+
+    <input type="submit" value="Add" />
 </form>
+</div>
+
+<div class="postsClass">
+<h1 style="margin-bottom: 15px">Your Old Posts: </h1>
+<div th:each="post : ${posts}" >
+    <p th:text="${post.getBody()}"></p>
+</div>
+</div>
+
 
 </body>
 </html>

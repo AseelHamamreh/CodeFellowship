@@ -23,10 +23,6 @@ public class AppUser implements UserDetails {
     private String lastName ;
     private String dateOfBirth ;
 
-    @ElementCollection
-    private List<String> followes;
-
-
 
 
     @Column(columnDefinition = "text")
@@ -34,6 +30,15 @@ public class AppUser implements UserDetails {
 
     @OneToMany(mappedBy="applicationUser")
     private List<Post> posts ;
+
+    @ManyToMany()
+    @JoinTable(
+            name = "userapp_userapp" ,
+            joinColumns = @JoinColumn(name="from_id") ,
+            inverseJoinColumns = @JoinColumn(name = "to_id")
+    )
+    private List<AppUser> following;
+
 
     public AppUser(){}
 
@@ -111,12 +116,13 @@ public class AppUser implements UserDetails {
         return profilePic;
     }
 
-    public void setFollowes(List<String> followes) {
-        this.followes = followes;
+
+    public List<AppUser> getFollowing() {
+        return following;
     }
 
-    public List<String> getFollowes() {
-        return followes;
+    public void setFollowing(List<AppUser> following) {
+        this.following = following;
     }
 
     @Override
