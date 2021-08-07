@@ -11,16 +11,15 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="http://localhost:3030/">codeFellowship </a>
+      <a class="navbar-brand" href="/">codeFellowship </a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="http://localhost:3030/">Home</a></li>
-      <li><a href="http://localhost:3030/login">Log in</a></li>
-      <li><a href="http://localhost:3030/signup">Sign Up</a></li>
-      <li><a href="http://localhost:3030/profile" sec:authorize="isAuthenticated()" >Profile</a></li>
-      <li><a href="http://localhost:3030/users" sec:authorize="isAuthenticated()">Users</a></li>
-      <li><a href="http://localhost:3030/following" sec:authorize="isAuthenticated()">Following</a></li>
-      <li><a href="http://localhost:3030/profile" sec:authorize="isAuthenticated()" sec:authentication="name"></a></li>
+      <li class="active"><a href="/">Home</a></li>
+      <li><a href="/login">Log in</a></li>
+      <li><a href="/signup" >Sign Up</a></li>
+      <li><a href="/profile" sec:authorize="isAuthenticated()">Profile</a></li>
+      <li><a href="/profile" sec:authorize="isAuthenticated()" sec:authentication="name"></a></li>
+      <li><a href="/logout" sec:authorize="isAuthenticated()" >Logout</a></li>
 
     </ul>
   </div>

@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -26,6 +27,17 @@ public class AppUserController {
         List<AppUser> myList = appUserRepo.findAll();
         model.addAttribute("myList", myList);
         return "profile" ;
+    }
+
+    @GetMapping("/user/{userId}")
+    public String getProfilePage(@PathVariable Long userId, Model model){
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        AppUser appUser = appUserRepo.findById(userId).orElseThrow();
+        model.addAttribute("appUser" , appUser);
+        model.addAttribute("posts" , appUser.getPosts());
+        List<AppUser> myList = appUserRepo.findAll();
+        model.addAttribute("myList", myList);
+        return "user" ;
     }
 }
 

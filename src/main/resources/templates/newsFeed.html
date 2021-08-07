@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Profile</title>
+    <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
 </head>
@@ -26,14 +26,15 @@
 </nav>
 
 
-<h3>All Users: </h3>
-<div th:each="user:${myList}" >
-<form th:action="@{/users}"  method="post">
-    <a th:href="@{'/user/'+${user.getId()}}">view Profile</a>
-        <input th:value="${user.username}" name="newUser">
-        <input value="Follow" type="submit">
-</form>
-</div>
+<h3>Your Friend Posts: </h3>
+<th:block th:each="user : ${users}" sec:authorize="isAuthenticated()">
+    <a th:href="@{'/user/'+${user.getId()}}"> <h5 th:text="${user.username}" ></h5> </a>
+    <div th:each="post : ${user.getPosts()}" >
+        <p th:text="${post.getBody()}"></p>
+    </div>
+
+</th:block>
+
 
 </body>
 </html>
